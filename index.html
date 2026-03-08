@@ -2,7 +2,11 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Chúc Mừng 8/3 Mẹ</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Quà 8/3 cho Mẹ</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins&display=swap" rel="stylesheet">
 
 <style>
 
@@ -12,105 +16,139 @@ height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-background:linear-gradient(135deg,#ff9a9e,#fad0c4);
-font-family:Segoe UI;
+flex-direction:column;
+background:linear-gradient(135deg,#ff9ec6,#ffd6e7);
+font-family:Poppins;
 overflow:hidden;
 }
 
-/* trái tim bay */
+h1{
+position:absolute;
+top:40px;
+color:white;
+font-family:Dancing Script;
+font-size:32px;
+text-align:center;
+}
+
+/* hộp quà */
+
+.gift-box{
+width:150px;
+height:150px;
+background:#ff4d88;
+position:relative;
+cursor:pointer;
+transform-style:preserve-3d;
+transition:1s;
+border-radius:10px;
+}
+
+.lid{
+width:150px;
+height:40px;
+background:#ff1f6b;
+position:absolute;
+top:-40px;
+border-radius:10px;
+transition:1s;
+}
+
+.ribbon-v{
+width:30px;
+height:150px;
+background:white;
+position:absolute;
+left:60px;
+}
+
+.ribbon-h{
+width:150px;
+height:30px;
+background:white;
+position:absolute;
+top:60px;
+}
+
+.open .lid{
+transform:translateY(-120px) rotate(20deg);
+}
+
+/* thư */
+
+.letter{
+position:absolute;
+width:320px;
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+text-align:center;
+opacity:0;
+transform:scale(0);
+transition:1s;
+}
+
+.letter.show{
+opacity:1;
+transform:scale(1);
+}
+
+.letter img{
+width:80%;
+border-radius:15px;
+margin-bottom:10px;
+}
+
+/* hoa */
+
+.rose{
+position:absolute;
+bottom:120px;
+font-size:40px;
+opacity:0;
+transform:scale(0);
+transition:1s;
+}
+
+.rose.show{
+opacity:1;
+transform:scale(1.5);
+}
+
+/* tim bay */
+
 .heart{
 position:absolute;
-color:red;
+color:#ff2d75;
 font-size:20px;
 animation:float 6s linear infinite;
 }
 
 @keyframes float{
-0%{transform:translateY(0);opacity:1}
-100%{transform:translateY(-100vh);opacity:0}
-}
-
-/* hoa rơi */
-.flower{
-position:absolute;
-top:-50px;
-font-size:25px;
-animation:fall 8s linear infinite;
-}
-
-@keyframes fall{
-0%{transform:translateY(-50px) rotate(0)}
-100%{transform:translateY(110vh) rotate(360deg)}
-}
-
-/* phong bì */
-.container{text-align:center}
-
-.envelope{
-width:260px;
-height:170px;
-background:#ff4d6d;
-border-radius:10px;
-cursor:pointer;
-position:relative;
-transition:0.5s;
-box-shadow:0 10px 25px rgba(0,0,0,0.3);
-}
-
-.envelope:hover{
-transform:scale(1.05);
-}
-.envelope:before{
-content:"";
-position:absolute;
-width:0;
-height:0;
-border-left:130px solid transparent;
-border-right:130px solid transparent;
-border-top:80px solid #ff758f;
-top:0;
-left:0;
-}
-
-/* lá thư */
-.letter{
-width:300px;
-background:white;
-padding:20px;
-border-radius:10px;
-position:absolute;
-left:-20px;
-top:-200px;
-opacity:0;
-transition:1s;
-box-shadow:0 10px 25px rgba(0,0,0,0.3);
-}
-
-.open .letter{
-top:-300px;
+0%{
+transform:translateY(0) scale(1);
 opacity:1;
 }
-
-img{
-width:200px;
-border-radius:15px;
-margin-top:10px;
-box-shadow:0 10px 20px rgba(0,0,0,0.3);
+100%{
+transform:translateY(-800px) scale(1.5);
+opacity:0;
+}
 }
 
-.message{
-color:#ff3366;
-font-size:18px;
-margin-top:10px;
-font-weight:bold;
-}
+/* sparkle */
 
-/* nơ */
-.bow{
+.sparkle{
 position:absolute;
-top:20px;
-left:20px;
-font-size:40px;
+color:white;
+font-size:14px;
+animation:spark 3s infinite;
+}
+
+@keyframes spark{
+0%{opacity:0}
+50%{opacity:1}
+100%{opacity:0}
 }
 
 </style>
@@ -118,59 +156,80 @@ font-size:40px;
 
 <body>
 
-<div class="bow">🎀</div>
+<h1>Nhấn vào hộp quà nhé mẹ ❤️</h1>
 
-<!-- nhạc nền -->
-<audio id="music" loop>
-<source src="audio1.mp3">
+<div class="gift-box" onclick="openGift()" id="gift">
+
+<div class="lid"></div>
+<div class="ribbon-v"></div>
+<div class="ribbon-h"></div>
+
+</div>
+
+<div class="rose" id="rose">🌹</div>
+
+<div class="letter" id="letter">
+
+<img src="me.jpg">
+
+<p style="font-family:Dancing Script;font-size:26px">
+
+Mẹ yêu ❤️
+
+</p>
+
+<p>
+Ngày 8/3,
+Chúc mẹ luôn khỏe mạnh,  
+luôn vui vẻ và hạnh phúc.
+Cảm ơn mẹ vì đã luôn yêu thương,  
+chăm sóc và hy sinh cho con.
+Con yêu mẹ rất nhiều 💗
+
+</p>
+
+</div>
+
+<audio id="music" preload="auto">
+  <source src="music.mp3" type="audio/mpeg">
 </audio>
-
-<div class="container">
-
-<div class="envelope" onclick="openLetter(this)">
-
-<div class="letter">
-
-<h2>💐 Gửi Mẹ 💐</h2>
-
-<p class="message">
-Chúc mẹ một ngày Quốc Tế Phụ Nữ 8/3 thật nhiều niềm vui 🌸  
-Luôn mạnh khỏe và hạnh phúc.  
-Cảm ơn mẹ vì đã luôn yêu thương và chăm sóc con ❤️
-</p>
-
-<img src="image.jpg">
-
-</div>
-
-</div>
-
-<p style="margin-top:20px;font-size:20px;color:white">
-💌 Bấm vào lá thư để mở
-</p>
-
-</div>
-
 <script>
 
-/* mở thư */
-function openLetter(el){
+function openGift(){
 
-el.classList.toggle("open")
+let gift=document.getElementById("gift")
+let rose=document.getElementById("rose")
+let letter=document.getElementById("letter")
+let music=document.getElementById("music")
 
-document.getElementById("music").play()
+gift.classList.add("open")
+
+music.currentTime = 0
+music.play().catch(()=>{})
+
+setTimeout(()=>{
+rose.classList.add("show")
+},800)
+
+setTimeout(()=>{
+letter.classList.add("show")
+},1600)
+
+hearts()
+sparkles()
 
 }
+function hearts(){
 
-/* tạo trái tim */
-function createHeart(){
+setInterval(()=>{
 
 let heart=document.createElement("div")
+
 heart.className="heart"
-heart.innerHTML="❤"
+heart.innerHTML="💗"
 
 heart.style.left=Math.random()*100+"vw"
-heart.style.fontSize=Math.random()*20+10+"px"
+heart.style.top="100vh"
 
 document.body.appendChild(heart)
 
@@ -178,29 +237,31 @@ setTimeout(()=>{
 heart.remove()
 },6000)
 
+},300)
+
 }
 
-setInterval(createHeart,400)
+function sparkles(){
 
-/* hoa rơi */
+setInterval(()=>{
 
-function createFlower(){
+let s=document.createElement("div")
 
-let flower=document.createElement("div")
-flower.className="flower"
-flower.innerHTML="🌹"
+s.className="sparkle"
+s.innerHTML="✨"
 
-flower.style.left=Math.random()*100+"vw"
+s.style.left=Math.random()*100+"vw"
+s.style.top=Math.random()*100+"vh"
 
-document.body.appendChild(flower)
+document.body.appendChild(s)
 
 setTimeout(()=>{
-flower.remove()
-},8000)
+s.remove()
+},3000)
+
+},200)
 
 }
-
-setInterval(createFlower,700)
 
 </script>
 
