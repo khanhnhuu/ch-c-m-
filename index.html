@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Chúc Mừng 8/3 Mẹ</title>
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+font-family:Segoe UI;
+overflow:hidden;
+}
+
+/* trái tim bay */
+.heart{
+position:absolute;
+color:red;
+font-size:20px;
+animation:float 6s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(0);opacity:1}
+100%{transform:translateY(-100vh);opacity:0}
+}
+
+/* hoa rơi */
+.flower{
+position:absolute;
+top:-50px;
+font-size:25px;
+animation:fall 8s linear infinite;
+}
+
+@keyframes fall{
+0%{transform:translateY(-50px) rotate(0)}
+100%{transform:translateY(110vh) rotate(360deg)}
+}
+
+/* phong bì */
+.container{text-align:center}
+
+.envelope{
+width:260px;
+height:170px;
+background:#ff4d6d;
+border-radius:10px;
+cursor:pointer;
+position:relative;
+transition:0.5s;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+.envelope:hover{
+transform:scale(1.05);
+}
+.envelope:before{
+content:"";
+position:absolute;
+width:0;
+height:0;
+border-left:130px solid transparent;
+border-right:130px solid transparent;
+border-top:80px solid #ff758f;
+top:0;
+left:0;
+}
+
+/* lá thư */
+.letter{
+width:300px;
+background:white;
+padding:20px;
+border-radius:10px;
+position:absolute;
+left:-20px;
+top:-200px;
+opacity:0;
+transition:1s;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+.open .letter{
+top:-300px;
+opacity:1;
+}
+
+img{
+width:200px;
+border-radius:15px;
+margin-top:10px;
+box-shadow:0 10px 20px rgba(0,0,0,0.3);
+}
+
+.message{
+color:#ff3366;
+font-size:18px;
+margin-top:10px;
+font-weight:bold;
+}
+
+/* nơ */
+.bow{
+position:absolute;
+top:20px;
+left:20px;
+font-size:40px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="bow">🎀</div>
+
+<!-- nhạc nền -->
+<audio id="music" loop>
+<source src="audio1.mp3">
+</audio>
+
+<div class="container">
+
+<div class="envelope" onclick="openLetter(this)">
+
+<div class="letter">
+
+<h2>💐 Gửi Mẹ 💐</h2>
+
+<p class="message">
+Chúc mẹ một ngày Quốc Tế Phụ Nữ 8/3 thật nhiều niềm vui 🌸  
+Luôn mạnh khỏe và hạnh phúc.  
+Cảm ơn mẹ vì đã luôn yêu thương và chăm sóc con ❤️
+</p>
+
+<img src="image.jpg">
+
+</div>
+
+</div>
+
+<p style="margin-top:20px;font-size:20px;color:white">
+💌 Bấm vào lá thư để mở
+</p>
+
+</div>
+
+<script>
+
+/* mở thư */
+function openLetter(el){
+
+el.classList.toggle("open")
+
+document.getElementById("music").play()
+
+}
+
+/* tạo trái tim */
+function createHeart(){
+
+let heart=document.createElement("div")
+heart.className="heart"
+heart.innerHTML="❤"
+
+heart.style.left=Math.random()*100+"vw"
+heart.style.fontSize=Math.random()*20+10+"px"
+
+document.body.appendChild(heart)
+
+setTimeout(()=>{
+heart.remove()
+},6000)
+
+}
+
+setInterval(createHeart,400)
+
+/* hoa rơi */
+
+function createFlower(){
+
+let flower=document.createElement("div")
+flower.className="flower"
+flower.innerHTML="🌹"
+
+flower.style.left=Math.random()*100+"vw"
+
+document.body.appendChild(flower)
+
+setTimeout(()=>{
+flower.remove()
+},8000)
+
+}
+
+setInterval(createFlower,700)
+
+</script>
+
+</body>
+</html>
